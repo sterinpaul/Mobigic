@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 const baseURL = axios.create({
-    baseURL:'http://localhost:3000/api'
+    baseURL:'https://workplacecodedone.online/api'
+    // baseURL:'http://localhost:3000/api'
 })
 
 baseURL.interceptors.request.use(

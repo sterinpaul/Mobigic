@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import {
     Navbar,
     Collapse,
@@ -18,6 +18,7 @@ import { setUploadedFiles } from "../redux/userSlice";
 import { setSignOut } from "../redux/userSlice";
 
 export function NavBar() {
+    const location = useLocation()
     const [openNav, setOpenNav] = useState(false);
     const dispatch = useDispatch()
     const [open, setOpen] = useState(false);
@@ -26,7 +27,7 @@ export function NavBar() {
     const navigate = useNavigate()
     const [chooseFile,setChooseFile] = useState(null)
     const {userName,uploadedFiles} = useSelector(store=>store.user)
-
+    
     useEffect(() => {
         window.addEventListener(
             "resize",
@@ -58,7 +59,7 @@ export function NavBar() {
                 color="white"
                 className="p-1 font-normal"
             >
-                <Link to="/" className="flex items-center hover:text-blue-800">
+                <Link to="/" className={`${location.pathname==='/' ? "text-blue-800" : "text-white"} flex items-center hover:text-blue-800`}>
                     Home
                 </Link>
             </Typography>
@@ -68,7 +69,7 @@ export function NavBar() {
                 color="white"
                 className="p-1 font-normal"
             >
-                <Link to="/profile" className="flex items-center hover:text-blue-800">
+                <Link to="/profile" className={`${location.pathname==='/profile' ? "text-blue-800" : "text-white"} flex items-center hover:text-blue-800`}>
                     My Uploads
                 </Link>
             </Typography>
@@ -93,7 +94,7 @@ export function NavBar() {
                     href="#"
                     className="mr-4 cursor-pointer py-1.5 font-bold text-lg"
                 >
-                    Mobigic
+                    Workplace Codedone
                 </Typography>
                 <div className="flex items-center gap-4">
                     <div className="mr-4 hidden lg:block">{navList}</div>

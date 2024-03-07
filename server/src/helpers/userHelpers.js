@@ -15,10 +15,10 @@ const userHelpers = {
         return await newUser.save()
     },
     getAllUploadedFiles:async()=>{
-        return await Uploads.find({listed:true}).sort({createdAt:-1})
+        return await Uploads.find({listed:true},{secretKey:false,listed:false}).sort({createdAt:-1})
     },
     getUploadedUserFiles:async(userName)=>{
-        return await Uploads.find({userName,listed:true}).sort({createdAt:-1})
+        return await Uploads.find({userName,listed:true},{listed:false}).sort({createdAt:-1})
     },
     uploadFile:async(userName,fileName)=>{
         const secretKey = uuid().slice(0, 6)

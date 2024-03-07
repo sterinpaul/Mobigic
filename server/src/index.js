@@ -12,7 +12,7 @@ const server = http.createServer(app)
 
 // Enabling CORS
 const enableCors = {
-  origin: '*',
+  origin: ['https://workplacecodedone.online'],
   exposeHeaders: ['Cross-Origin-Opener-Policy', 'Cross-Origin-Resource-Policy']
 }
 
