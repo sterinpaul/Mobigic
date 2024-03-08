@@ -41,7 +41,8 @@ const userControllers = {
     },
     getUploadedFiles:async(req,res)=>{
         const {userName} = req.params
-        const response = await userHelpers.getUploadedUserFiles(userName)
+        const encodedUserName = encodeURIComponent(userName)
+        const response = await userHelpers.getUploadedUserFiles(encodedUserName)
         if(response){
             res.json({status:true,data:response})
         }
