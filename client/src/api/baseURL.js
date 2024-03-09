@@ -3,7 +3,6 @@ import { baseUrl } from './constants'
 
 const baseURL = axios.create({
     baseURL:`${baseUrl}/api`
-    // baseURL:"http://localhost:3000/api"
 })
 
 baseURL.interceptors.request.use(
