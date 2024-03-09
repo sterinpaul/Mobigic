@@ -13,6 +13,8 @@ import {
     DialogHeader,
     DialogFooter
 } from "@material-tailwind/react";
+import { baseUrl } from "../api/constants";
+
 
 const UserProfile = () => {
     const { userName, uploadedFiles } = useSelector(store => store.user)
@@ -44,7 +46,7 @@ const UserProfile = () => {
 
     const downloadFile = async()=>{
         try {
-            await fetch(`http://localhost:3000/uploads/${fileName}`)
+            await fetch(`${baseUrl}/uploads/${fileName}`)
                 .then((response) => response.blob())
                 .then((blob) => {
                     const url = window.URL.createObjectURL(new Blob([blob]));
@@ -88,7 +90,7 @@ const UserProfile = () => {
                             </MenuList>
                         </Menu>
                         <div className="h-52 w-72  overflow-hidden p-2">
-                            <img className="w-full h-full object-cover" src={`http://localhost:3000/uploads/${singleImg.fileName}`} alt={singleImg.fileName} />
+                            <img className="w-full h-full object-cover" src={`${baseUrl}/uploads/${singleImg.fileName}`} alt={singleImg.fileName} />
                         </div>
                         <div className="self-center">
                             <p className="text-center p-1">Secret Key : {singleImg.secretKey}</p>

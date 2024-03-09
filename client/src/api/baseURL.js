@@ -1,7 +1,8 @@
 import axios from 'axios'
+import { baseUrl } from './constants'
 
 const baseURL = axios.create({
-    baseURL:'https://workplacecodedone.online/api'
+    baseURL:`${baseUrl}/api`
     // baseURL:"http://localhost:3000/api"
 })
 

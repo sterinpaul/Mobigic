@@ -13,6 +13,7 @@ import {
     DialogHeader,
     DialogFooter
 } from "@material-tailwind/react";
+import { baseUrl } from "../api/constants";
 
 const UserDashBoard = () => {
     const { userName, uploadedFiles } = useSelector(store => store.user)
@@ -48,7 +49,7 @@ const UserDashBoard = () => {
 
     const downloadUserFile = async (file) => {
         try {
-            await fetch(`http://localhost:3000/uploads/${file}`)
+            await fetch(`${baseUrl}/uploads/${file}`)
                 .then((response) => response.blob())
                 .then((blob) => {
                     const url = window.URL.createObjectURL(new Blob([blob]));
@@ -73,21 +74,6 @@ const UserDashBoard = () => {
             const response = await verifySecret(fileId, secret)
             if (response?.status) {
                 downloadUserFile(response.fileName)
-                // try {
-                //     await fetch(`http://localhost:3000/uploads/${response.fileName}`)
-                //         .then((response) => response.blob())
-                //         .then((blob) => {
-                //             const url = window.URL.createObjectURL(new Blob([blob]));
-                //             const a = document.createElement('a');
-                //             a.href = url;
-                //             a.download = response.fileName;
-                //             document.body.appendChild(a);
-                //             a.click();
-                //             document.body.removeChild(a);
-                //         });
-                // } catch (error) {
-                //     console.error('Error downloading file:', error);
-                // }
                 handleOpen()
             } else {
                 setSecretKeyError('Secret key is wrong')
@@ -126,7 +112,7 @@ const UserDashBoard = () => {
                                 </MenuList>
                             </Menu>
                             <div className="h-52 w-72  overflow-hidden p-2">
-                                <img className="w-full h-full object-cover" src={`http://localhost:3000/uploads/${singleImg.fileName}`} alt={singleImg.fileName} />
+                                <img className="w-full h-full object-cover" src={`${baseUrl}/uploads/${singleImg.fileName}`} alt={singleImg.fileName} />
                             </div>
                         </div>
                     )
